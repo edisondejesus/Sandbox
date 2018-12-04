@@ -351,11 +351,10 @@ $('document').ready(function(){
 											
 
 												$('#next_end').click(()=>{
-														alert("hola");
 
 
 														$("#suppliers_wirite").html(`
-															<div style="z-index:4; opacity:0.9; position:absolute;left:300px;">
+															<div style="z-index:4; position:absolute;left:300px;" id="ventana_order">
 																<div class="panel panel-default">	
 																	<div class="panel-heading">
 																		<strong>Confirm Order</strong>
@@ -373,7 +372,7 @@ $('document').ready(function(){
 																					<select>
 																				</td>
 																				<td>
-																					<input type='text'>
+																					<input type='text' id='description'>
 																				</td>
 
 																			</tr>
@@ -390,6 +389,62 @@ $('document').ready(function(){
 															</div>
 														`);
 
+														$('#send_order').click(()=>{
+
+															var description = $('#description').val();
+															var f = new Date();
+															var fecha = `${f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear()}`;
+																$('#ventana_order').hide('slow',()=>{
+
+																		$('#ventana_order').html("");
+																		$('#data_read').html(`<h2 style="margin-left:30%">The quote has been sent correctly</h2>
+																				<h1>Suppliers</h1>
+																						<ul class="nav nav-tabs tabbs">
+																							<li><button class='btn-primary' id='make_qoute'>New Qoute</button></li>
+																							<li><button class='btn-warning' style='margin-left:1.5%;'>Remove</button></li>
+																						</ul>
+																						<table class='table' border='1'>
+																						<h2>Quote Requestor to Suppliers</h2>
+																					
+																							<tr>
+																								<th>Action</th>
+																								<th>Order Number</th>
+																								<th>Desciption</th>
+																								<th>Email</th>
+																								<th>Order date created</th>
+																								<th>Total amount</th>
+																								<th>Status</th>
+																							</tr>
+
+																							<tr>
+																								<td><button class='btn btn-success'><i class="glyphicon glyphicon-pencil "></i></button></td>
+																								<td>Electric Power</td>
+																								<td>Electrical equipment supplier</button></td>
+																								<td>supplierelectric@gmail.com</td>
+																								<td>2018-09-28 12:13:06</td>
+																								<td>350.00</td>
+																								<td><div style='background:#00d800; width:100%; height:40px;'><strong style='margin-left:25%; margin-top:12%;'>Sent</strong></div></td>
+																							</tr>
+
+
+																							<tr>
+																								<td><button class='btn btn-success'><i class="glyphicon glyphicon-pencil "></i></button></td>
+																								<td>Electric Power</td>
+																								<td>${description}</button></td>
+																								<td>supplierelectric@gmail.com</td>
+																								<td>${fecha}</td>
+																								<td>350.00</td>
+																								<td><div style='background:#dc0000; width:100%; height:40px;'><strong style='margin-left:25%; margin-top:12%;'>Peding</strong></div></td>
+																							</tr>
+
+																						</table
+																						<div>
+
+
+																		`);	
+
+																});
+														});
 
 												});
 
